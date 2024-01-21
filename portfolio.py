@@ -12,7 +12,6 @@ app = Flask("portfo_app")
 app.config['MONGO_URI'] = os.environ.get("MONGO_URI", "mongodb+srv://jyotsnakdm:Starfish@portfolio.8rymbif.mongodb.net/myportfolio")
 mongo = PyMongo(app)
 
-# Your routes and helper functions...
 
 @app.route('/test_db_connection')
 def test_db_connection():
@@ -20,8 +19,6 @@ def test_db_connection():
     return f"Connected to database: {db_info['db']}"
 
 
-
-# Route for the home page
 # Route for the home page
 @app.route('/')
 def home():
@@ -63,7 +60,7 @@ def education():
                 'institute': record.get('Institute', ''),
                 'degree': record.get('Degree', ''),
                 'date': record.get('Date', ''),
-                'extra info': record.get('Extra Info', ''),  # Corrected field name
+                'extra info': record.get('Extra Info', ''), 
                 'image': record.get('Image', '')
             })
 
@@ -145,9 +142,6 @@ def experience():
         return render_template('error.html', message='No experience data found')
 
 
-
-# Your existing routes...
-
 # Route for the resume page
 @app.route('/resume')
 def resume():
@@ -155,9 +149,8 @@ def resume():
     
     return render_template('resume.html', resumelink=resume_link, name="Jyotsna kadam")
 
-# Similar routes and helper functions for other pages...
 
 if __name__ == '__main__':
-    # Use dynamic port binding, default to 5000
+    # dynamic port binding, default to 5000
     port = int(os.environ.get("PORT", 5000))
     app.run(debug=True, port=port)
